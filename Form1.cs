@@ -11,7 +11,7 @@ using System.Windows.Forms;
 namespace SAE24STARGATE
 {
 
-    // lolilol
+    // lolilolilol
     public partial class frmAccueil : Form
     {
         public frmAccueil()
