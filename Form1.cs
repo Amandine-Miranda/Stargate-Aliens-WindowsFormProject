@@ -18,5 +18,25 @@ namespace SAE24STARGATE
             InitializeComponent();
         }
 
+        private void btnTableauBord_Click(object sender, EventArgs e)
+        {
+            tabMenu.SelectedTab = tabPagePrincipal;
+        }
+
+        private void btnDecouverteRaces_Click(object sender, EventArgs e)
+        {
+            tabMenu.SelectedTab = tabPagePrincipal;
+        }
+
+        private void btnNouvelleMission_Click(object sender, EventArgs e)
+        {
+            tabMenu.SelectedTab = tabPagePrincipal;
+        }
+
+        private void btnInfosPlanete_Click(object sender, EventArgs e)
+        {
+            tabMenu.SelectedTab = tabPagePrincipal;
+        }
+
     }
 }
