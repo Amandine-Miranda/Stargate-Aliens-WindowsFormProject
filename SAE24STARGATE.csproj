@@ -85,5 +85,17 @@
   <ItemGroup>
     <None Include="Resources\BGimg1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnDecouvRaces.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnInfosPlanete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnNouvMission.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnTableauBord.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
