@@ -44,6 +44,9 @@
             this.grpDecouvRaces = new System.Windows.Forms.GroupBox();
             this.grpNouvMission = new System.Windows.Forms.GroupBox();
             this.grpInfosPlan = new System.Windows.Forms.GroupBox();
+            this.btnPresent = new System.Windows.Forms.Button();
+            this.btnPasse = new System.Windows.Forms.Button();
+            this.btnFutur = new System.Windows.Forms.Button();
             this.tabMenu.SuspendLayout();
             this.tabPageMenu.SuspendLayout();
             this.tabPagePrincipal.SuspendLayout();
@@ -252,6 +255,9 @@
             // grpTableauBord
             // 
             this.grpTableauBord.BackColor = System.Drawing.Color.Black;
+            this.grpTableauBord.Controls.Add(this.btnFutur);
+            this.grpTableauBord.Controls.Add(this.btnPasse);
+            this.grpTableauBord.Controls.Add(this.btnPresent);
             this.grpTableauBord.Controls.Add(this.grpMissionsTDB);
             this.grpTableauBord.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.grpTableauBord.Location = new System.Drawing.Point(193, 13);
@@ -265,7 +271,9 @@
             // 
             // grpMissionsTDB
             // 
-            this.grpMissionsTDB.Location = new System.Drawing.Point(103, 81);
+            this.grpMissionsTDB.Location = new System.Drawing.Point(54, 69);
+            this.grpMissionsTDB.MaximumSize = new System.Drawing.Size(525, 450);
+            this.grpMissionsTDB.MinimumSize = new System.Drawing.Size(525, 450);
             this.grpMissionsTDB.Name = "grpMissionsTDB";
             this.grpMissionsTDB.Padding = new System.Windows.Forms.Padding(0);
             this.grpMissionsTDB.Size = new System.Drawing.Size(525, 450);
@@ -308,6 +316,33 @@
             this.grpInfosPlan.TabStop = false;
             this.grpInfosPlan.Visible = false;
             // 
+            // btnPresent
+            // 
+            this.btnPresent.Location = new System.Drawing.Point(233, 18);
+            this.btnPresent.Name = "btnPresent";
+            this.btnPresent.Size = new System.Drawing.Size(170, 50);
+            this.btnPresent.TabIndex = 2;
+            this.btnPresent.Text = "button1";
+            this.btnPresent.UseVisualStyleBackColor = true;
+            // 
+            // btnPasse
+            // 
+            this.btnPasse.Location = new System.Drawing.Point(54, 18);
+            this.btnPasse.Name = "btnPasse";
+            this.btnPasse.Size = new System.Drawing.Size(170, 50);
+            this.btnPasse.TabIndex = 3;
+            this.btnPasse.Text = "button2";
+            this.btnPasse.UseVisualStyleBackColor = true;
+            // 
+            // btnFutur
+            // 
+            this.btnFutur.Location = new System.Drawing.Point(409, 18);
+            this.btnFutur.Name = "btnFutur";
+            this.btnFutur.Size = new System.Drawing.Size(170, 50);
+            this.btnFutur.TabIndex = 4;
+            this.btnFutur.Text = "button3";
+            this.btnFutur.UseVisualStyleBackColor = true;
+            // 
             // frmAccueil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -348,6 +383,9 @@
         private System.Windows.Forms.GroupBox grpNouvMission;
         private System.Windows.Forms.GroupBox grpInfosPlan;
         private System.Windows.Forms.GroupBox grpMissionsTDB;
+        private System.Windows.Forms.Button btnPresent;
+        private System.Windows.Forms.Button btnFutur;
+        private System.Windows.Forms.Button btnPasse;
     }
 }
 
