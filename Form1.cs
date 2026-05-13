@@ -4,9 +4,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SQLite;
 
 namespace SAE24STARGATE
 {
@@ -17,8 +19,48 @@ namespace SAE24STARGATE
         {
             InitializeComponent();
         }
+
+        //AMANDINE
+        //permet d'initialiser le mode déconnecté de la base de données
+        SQLiteConnection maConnec = new SQLiteConnection();
+        string connecString = @"Data Source = Stargate.db";
+        DataSet monDS = new DataSet();
+        //AMANDINE
         private void frmAccueil_Load(object sender, EventArgs e)
         {
+            //AMANDINE
+            //permet d'initialiser le mode déconnecté de la base de données et de mettre la base de données dans monDS, le dataSet
+            maConnec.ConnectionString = connecString;
+
+            maConnec.Open();
+            DataTable dtSchema = maConnec.GetSchema("Tables");
+
+            for (int i = 1; i < dtSchema.Rows.Count; i++)
+            {
+                string nomTable = dtSchema.Rows[i]["TABLE_NAME"].ToString();
+
+                string requete = "select * from " + nomTable;
+                SQLiteCommand cd = new SQLiteCommand(requete, maConnec);
+
+                SQLiteDataAdapter da = new SQLiteDataAdapter();
+                da.SelectCommand = cd;
+
+                da.Fill(monDS, nomTable);
+            }
+
+            //AMANDINE
+
+            //AMANDINE
+            //Permet de remplir un nouveau DataSet, cette fois-ci uniquement avec les couleurs distinctes d'Aliens, dans le but de remplir la cboCouleursAliens
+            SQLiteDataAdapter da2 = new SQLiteDataAdapter("SELECT DISTINCT couleur FROM Espece ORDER BY couleur", maConnec);
+
+            da2.Fill(monDS, "Couleurs");
+
+            cboCouleursAliens.DataSource = monDS.Tables["Couleurs"];
+            cboCouleursAliens.DisplayMember = "couleur";
+            
+            maConnec.Close();
+            //AMANDINE
 
         }
 
@@ -99,6 +141,17 @@ namespace SAE24STARGATE
             grpNouvMission.Visible = false;
             grpTableauBord.Visible = false;
             grpInfosPlan.Visible = true;
+            // AMANDINE
+        }
+
+        private void txtNomAliens_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // AMANDINE
+            // Permet de n'autoriser que les lettres et le retour arrière, shift, espace, entrée etc... Dans la zone de texte permettant de rentrer le nom des aliens
+            if(!(Char.IsLetter(e.KeyChar)) && !(Char.IsControl(e.KeyChar)))
+            {
+                e.Handled = true;
+            }
             // AMANDINE
         }
     }
