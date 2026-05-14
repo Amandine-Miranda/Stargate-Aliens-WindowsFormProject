@@ -62,6 +62,63 @@ namespace SAE24STARGATE
             maConnec.Close();
             //AMANDINE
 
+            //AMANDINE
+            //Permet de charger tous les aliens à partir d'espèce (en distinguant les alliés et ennemis) dans le grpAliens
+
+            //MessageBox.Show(monDS.Tables["Espece"].Rows[0]["nom"].ToString()); => Return noomahS
+
+            int top = 10;
+            int left = 15;
+
+            foreach(DataRow ligne in monDS.Tables["Espece"].Rows)
+            {
+                GroupBox newGrp = new GroupBox();
+                newGrp.Width = 125;
+                newGrp.Height = 225;
+                newGrp.Top = top;
+                newGrp.Left = left;
+                newGrp.Text = "";
+
+                PictureBox pbox = new PictureBox();
+                pbox.Top = 15;
+                pbox.Left = 10;
+                pbox.Width = 105;
+                pbox.Height = 105;
+                pbox.BackColor = Color.White;
+
+                Label lbl = new Label();
+                lbl.Top = 15 + pbox.Height + 5;
+                lbl.Left = 10;
+                lbl.Text = "-> " + ligne["nom"].ToString();
+                lbl.ForeColor = Color.FromArgb(31, 234, 204);
+                lbl.Font = new Font("Orbitron", 7, FontStyle.Bold);
+
+                Label clr = new Label();
+                clr.Top = lbl.Top + lbl.Height - 2;
+                clr.Left = 10;
+                clr.Text = ligne["couleur"].ToString();
+                clr.ForeColor = Color.FromArgb(26, 0, 255);
+                clr.Font = new Font("Orbitron", 8, FontStyle.Bold);
+
+                // prochaine étape c'est de checker si l'alien est un allié ou un ennemi pour savoir quoi afficher
+
+                newGrp.Controls.Add(pbox);
+                newGrp.Controls.Add(lbl);
+                newGrp.Controls.Add(clr);
+
+                panelAliens.Controls.Add(newGrp);
+
+                left += newGrp.Width + 20;
+
+                if (left > 540)
+                {
+                    left = 15;
+                    top += newGrp.Height + 20;
+                }
+            }
+
+            //AMANDINE
+
         }
 
         private void btnTableauBord_Click(object sender, EventArgs e)
@@ -154,5 +211,11 @@ namespace SAE24STARGATE
             }
             // AMANDINE
         }
+
+        private void btnRechercherAliens_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
