@@ -168,11 +168,11 @@ namespace SAE24STARGATE
                         instrument.Left = 10;
                         instrument.ForeColor = Color.FromArgb(165, 255, 64);    // Joli vert neon
                         instrument.Font = new Font("Orbitron", 7, FontStyle.Bold);
+                        instrument.Height = 50;
 
                         instrument.Text = ligne2["instrumentMusique"].ToString();
 
                         // Permet d'afficher les instruments qui ont un long nom bien
-                        // FIX A FAIRE : POURQUOI SUR LES INSTRUMENTS DE PLUSIEURS MOTS CA VEUT PAS REVENIR A LA LIGNE ???
 
                         if (instrument.Text.Length >= 16)
                         {
@@ -217,11 +217,11 @@ namespace SAE24STARGATE
                         arme.Left = 10;
                         arme.ForeColor = Color.FromArgb(184, 143, 255); // Joli violet
                         arme.Font = new Font("Orbitron", 7, FontStyle.Bold);
+                        arme.Height = 50;
 
                         arme.Text = ligne3["typeArme"].ToString();
 
                         // Permet d'afficher les armes qui ont un long nom bien
-                        // FIX A FAIRE : POURQUOI SUR LES ARMES DE PLUSIEURS MOTS CA VEUT PAS REVENIR A LA LIGNE ???
 
                         if (arme.Text.Length >= 16)
                         {
