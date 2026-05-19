@@ -61,7 +61,7 @@ namespace SAE24STARGATE
             
             maConnec.Close();
             //AMANDINE
-
+                 
             //AMANDINE
             //Permet de charger tous les aliens à partir d'espèce (en distinguant les alliés et ennemis) dans le grpAliens
 
@@ -74,10 +74,11 @@ namespace SAE24STARGATE
             {
                 GroupBox newGrp = new GroupBox();
                 newGrp.Width = 125;
-                newGrp.Height = 225;
+                newGrp.Height = 250;
                 newGrp.Top = top;
                 newGrp.Left = left;
                 newGrp.Text = "";
+
 
                 PictureBox pbox = new PictureBox();
                 pbox.Top = 15;
@@ -86,25 +87,165 @@ namespace SAE24STARGATE
                 pbox.Height = 105;
                 pbox.BackColor = Color.White;
 
+                newGrp.Controls.Add(pbox);
+
                 Label lbl = new Label();
                 lbl.Top = 15 + pbox.Height + 5;
                 lbl.Left = 10;
                 lbl.Text = "-> " + ligne["nom"].ToString();
-                lbl.ForeColor = Color.FromArgb(31, 234, 204);
+                lbl.ForeColor = Color.FromArgb(31, 234, 204);   // Le fameux turquoise
                 lbl.Font = new Font("Orbitron", 7, FontStyle.Bold);
+
+                newGrp.Controls.Add(lbl);
 
                 Label clr = new Label();
                 clr.Top = lbl.Top + lbl.Height - 2;
                 clr.Left = 10;
                 clr.Text = ligne["couleur"].ToString();
-                clr.ForeColor = Color.FromArgb(26, 0, 255);
+                clr.ForeColor = Color.FromArgb(36, 107, 255); // Le fameux bleu
                 clr.Font = new Font("Orbitron", 8, FontStyle.Bold);
 
-                // prochaine étape c'est de checker si l'alien est un allié ou un ennemi pour savoir quoi afficher
-
-                newGrp.Controls.Add(pbox);
-                newGrp.Controls.Add(lbl);
                 newGrp.Controls.Add(clr);
+
+                //Initialise un label de base "Origine inconnue" au cas-où on ne trouve pas l'origine de l'alien
+                Label origine = new Label();
+                origine.Top = clr.Top + clr.Height - 2;
+                origine.Left = 10;
+                origine.Text = "\t?";
+                origine.TextAlign = ContentAlignment.TopCenter;
+                origine.ForeColor = Color.FromArgb(31, 234, 204);    //Le fameux turquoise
+                origine.Font = new Font("Orbitron", 7, FontStyle.Bold);
+
+                //Permet de savoir d'où vient l'alien en parcourant les données de la table Habiter, tout en gérant bien la mise en page avec 
+                foreach (DataRow ligne2 in monDS.Tables["Habiter"].Rows)
+                {
+                    if (ligne2["idEspece"].ToString() == ligne["id"].ToString())
+                    {
+                        origine.TextAlign = ContentAlignment.TopLeft;
+
+                        origine.ForeColor = Color.FromArgb(31, 234, 204); // Le fameux turquoise
+                        if (origine.Text == "\t?")
+                        {
+                            origine.Text = ligne2["nomPlanete"].ToString() + "/";
+                        }
+                        else
+                        {
+                            origine.Text += ligne2["nomPlanete"].ToString() + "/";
+
+                            if (origine.Text.Length >= 16)
+                            {
+                                origine.Text = origine.Text.Substring(0, origine.Text.Length - ligne2["nomPlanete"].ToString().Length - 1) + "\n" + ligne2["nomPlanete"].ToString() + "/";
+                            }
+                        }
+                    }
+                }
+
+                //On doit enlever le slash de fin, mais pas si c'est origine inconnue, car il n'y en a pas
+                if(origine.Text.Substring(origine.Text.Length - 1, 1) == "/")
+                {
+                    origine.Text = origine.Text.Substring(0, origine.Text.Length - 1);
+                }
+
+                newGrp.Controls.Add(origine);
+
+
+                //Permet de savoir si l'alien actuel est un allié 
+                foreach (DataRow ligne2 in monDS.Tables["Allie"].Rows)
+                {
+                    if (ligne2["idEspece"].ToString() == ligne["id"].ToString())
+                    {
+                        Label allie = new Label();
+                        allie.Top = 0;
+                        allie.Left = lbl.Left;
+                        allie.Text = "Allié";
+                        allie.TextAlign = ContentAlignment.TopCenter;
+                        allie.ForeColor = Color.FromArgb(165, 255, 64);   // Joli vert néon
+                        allie.Font = new Font("Orbitron", 7, FontStyle.Bold);
+
+
+                        Label instrument = new Label();
+                        instrument.Top = origine.Top + origine.Height;
+                        instrument.Left = 10;
+                        instrument.ForeColor = Color.FromArgb(165, 255, 64);    // Joli vert neon
+                        instrument.Font = new Font("Orbitron", 7, FontStyle.Bold);
+
+                        instrument.Text = ligne2["instrumentMusique"].ToString();
+
+                        // Permet d'afficher les instruments qui ont un long nom bien
+                        // FIX A FAIRE : POURQUOI SUR LES INSTRUMENTS DE PLUSIEURS MOTS CA VEUT PAS REVENIR A LA LIGNE ???
+
+                        if (instrument.Text.Length >= 16)
+                        {
+                            instrument.Text = "";
+                            String[] instrumentTab = new String[5];
+                            instrumentTab = ligne2["instrumentMusique"].ToString().Split(' ');
+                            foreach (String mot in instrumentTab)
+                            {
+                                if (instrument.Text.Length >= 16)
+                                {
+                                    instrument.Text += "\n" + mot;
+                                }
+                                else
+                                {
+                                    instrument.Text += mot + " ";
+                                }
+                            }
+
+                        }
+
+                        newGrp.Controls.Add(allie);
+                        newGrp.Controls.Add(instrument);
+                        break;
+                    }
+                }
+
+                //Permet de savoir si l'alien actuel est un ennemi
+                foreach (DataRow ligne3 in monDS.Tables["Ennemi"].Rows)
+                {
+                    if (ligne3["idEspece"].ToString() == ligne["id"].ToString())
+                    {
+                        Label ennemi = new Label();
+                        ennemi.Top = 0;
+                        ennemi.Left = lbl.Left;
+                        ennemi.Text = "Ennemi";
+                        ennemi.TextAlign = ContentAlignment.TopCenter;
+                        ennemi.ForeColor = Color.FromArgb(184, 143, 255);   // Joli violet
+                        ennemi.Font = new Font("Orbitron", 7, FontStyle.Bold);
+
+                        Label arme = new Label();
+                        arme.Top = origine.Top + origine.Height;
+                        arme.Left = 10;
+                        arme.ForeColor = Color.FromArgb(184, 143, 255); // Joli violet
+                        arme.Font = new Font("Orbitron", 7, FontStyle.Bold);
+
+                        arme.Text = ligne3["typeArme"].ToString();
+
+                        // Permet d'afficher les armes qui ont un long nom bien
+                        // FIX A FAIRE : POURQUOI SUR LES ARMES DE PLUSIEURS MOTS CA VEUT PAS REVENIR A LA LIGNE ???
+
+                        if (arme.Text.Length >= 16)
+                        {
+                            arme.Text = "";
+                            String[] armeTab = new String[5];
+                            armeTab = ligne3["typeArme"].ToString().Split(' ');
+                            foreach (String mot in armeTab)
+                            {
+                                if (arme.Text.Length >= 16)
+                                {
+                                    arme.Text += "\n" + mot;
+                                }
+                                else
+                                {
+                                    arme.Text += mot + " ";
+                                }
+                            }
+                        }
+
+                        newGrp.Controls.Add(ennemi);
+                        newGrp.Controls.Add(arme);
+                        break;
+                    }
+                }
 
                 panelAliens.Controls.Add(newGrp);
 

@@ -40,6 +40,7 @@
             this.btnNouvMission = new System.Windows.Forms.Button();
             this.BtnInfosPlan = new System.Windows.Forms.Button();
             this.grpDecouvRaces = new System.Windows.Forms.GroupBox();
+            this.panelAliens = new System.Windows.Forms.Panel();
             this.grpFiltres = new System.Windows.Forms.GroupBox();
             this.btnRechercherAliens = new System.Windows.Forms.Button();
             this.cboCouleursAliens = new System.Windows.Forms.ComboBox();
@@ -53,7 +54,6 @@
             this.btnPresent = new System.Windows.Forms.Button();
             this.grpMissionsTDB = new System.Windows.Forms.GroupBox();
             this.grpNouvMission = new System.Windows.Forms.GroupBox();
-            this.panelAliens = new System.Windows.Forms.Panel();
             this.tabMenu.SuspendLayout();
             this.tabPageMenu.SuspendLayout();
             this.tabPagePrincipal.SuspendLayout();
@@ -195,7 +195,7 @@
             // 
             this.btnTbBord.BackgroundImage = global::SAE24STARGATE.Properties.Resources.btnTableauBord;
             this.btnTbBord.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnTbBord.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.btnTbBord.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(107)))), ((int)(((byte)(255)))));
             this.btnTbBord.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(234)))), ((int)(((byte)(204)))));
             this.btnTbBord.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(234)))), ((int)(((byte)(204)))));
             this.btnTbBord.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -210,7 +210,7 @@
             // 
             this.btnDecouvRaces.BackgroundImage = global::SAE24STARGATE.Properties.Resources.btnDecouvRaces;
             this.btnDecouvRaces.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnDecouvRaces.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.btnDecouvRaces.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(107)))), ((int)(((byte)(255)))));
             this.btnDecouvRaces.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(234)))), ((int)(((byte)(204)))));
             this.btnDecouvRaces.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(234)))), ((int)(((byte)(204)))));
             this.btnDecouvRaces.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -225,7 +225,7 @@
             // 
             this.btnNouvMission.BackgroundImage = global::SAE24STARGATE.Properties.Resources.btnNouvMission;
             this.btnNouvMission.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnNouvMission.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.btnNouvMission.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(107)))), ((int)(((byte)(255)))));
             this.btnNouvMission.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(234)))), ((int)(((byte)(204)))));
             this.btnNouvMission.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(234)))), ((int)(((byte)(204)))));
             this.btnNouvMission.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -240,7 +240,7 @@
             // 
             this.BtnInfosPlan.BackgroundImage = global::SAE24STARGATE.Properties.Resources.btnInfosPlanete;
             this.BtnInfosPlan.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.BtnInfosPlan.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.BtnInfosPlan.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(107)))), ((int)(((byte)(255)))));
             this.BtnInfosPlan.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(234)))), ((int)(((byte)(204)))));
             this.BtnInfosPlan.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(234)))), ((int)(((byte)(204)))));
             this.BtnInfosPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -263,6 +263,16 @@
             this.grpDecouvRaces.TabStop = false;
             this.grpDecouvRaces.Visible = false;
             // 
+            // panelAliens
+            // 
+            this.panelAliens.AutoScroll = true;
+            this.panelAliens.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelAliens.ForeColor = System.Drawing.Color.Black;
+            this.panelAliens.Location = new System.Drawing.Point(25, 35);
+            this.panelAliens.Name = "panelAliens";
+            this.panelAliens.Size = new System.Drawing.Size(905, 582);
+            this.panelAliens.TabIndex = 7;
+            // 
             // grpFiltres
             // 
             this.grpFiltres.Controls.Add(this.btnRechercherAliens);
@@ -271,7 +281,7 @@
             this.grpFiltres.Controls.Add(this.label1);
             this.grpFiltres.Controls.Add(this.lblNomAlien);
             this.grpFiltres.Font = new System.Drawing.Font("Orbitron", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpFiltres.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.grpFiltres.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(107)))), ((int)(((byte)(255)))));
             this.grpFiltres.Location = new System.Drawing.Point(25, 630);
             this.grpFiltres.Name = "grpFiltres";
             this.grpFiltres.Size = new System.Drawing.Size(905, 180);
@@ -294,7 +304,7 @@
             // 
             // cboCouleursAliens
             // 
-            this.cboCouleursAliens.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.cboCouleursAliens.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(107)))), ((int)(((byte)(255)))));
             this.cboCouleursAliens.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboCouleursAliens.Font = new System.Drawing.Font("Orbitron", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCouleursAliens.ForeColor = System.Drawing.Color.White;
@@ -306,7 +316,7 @@
             // 
             // txtNomAliens
             // 
-            this.txtNomAliens.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.txtNomAliens.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(107)))), ((int)(((byte)(255)))));
             this.txtNomAliens.Font = new System.Drawing.Font("Orbitron", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNomAliens.ForeColor = System.Drawing.Color.White;
             this.txtNomAliens.Location = new System.Drawing.Point(192, 44);
@@ -411,16 +421,6 @@
             this.grpNouvMission.TabIndex = 6;
             this.grpNouvMission.TabStop = false;
             this.grpNouvMission.Visible = false;
-            // 
-            // panelAliens
-            // 
-            this.panelAliens.AutoScroll = true;
-            this.panelAliens.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panelAliens.ForeColor = System.Drawing.Color.Black;
-            this.panelAliens.Location = new System.Drawing.Point(25, 35);
-            this.panelAliens.Name = "panelAliens";
-            this.panelAliens.Size = new System.Drawing.Size(905, 582);
-            this.panelAliens.TabIndex = 7;
             // 
             // frmAccueil
             // 
