@@ -268,6 +268,7 @@ namespace SAE24STARGATE
             // Permet de changer de plan et de voir la tabPage principale, et d'afficher le bon groupBox (ici Tableau de Bord)
             tabMenu.SelectedTab = tabPagePrincipal;
             grpTableauBord.Visible = true;
+            grpTableauBord.Controls.Clear();    //Leo , clear la groupbox qui affiche les missions pour eviter les bugs où des missions sont déja affichées.
             // AMANDINE
         }
 
@@ -277,6 +278,7 @@ namespace SAE24STARGATE
             // Permet de changer de plan et de voir la tabPage principale, et d'afficher le bon groupBox (ici Decouverte des Races)
             tabMenu.SelectedTab = tabPagePrincipal;
             grpDecouvRaces.Visible = true;
+            grpTableauBord.Controls.Clear();    //Leo , clear la groupbox qui affiche les missions pour eviter les bugs où des missions sont déja affichées.
             // AMANDINE
         }
 
@@ -286,6 +288,7 @@ namespace SAE24STARGATE
             // Permet de changer de plan et de voir la tabPage principale, et d'afficher le bon groupBox (ici Nouvelle Mission)
             tabMenu.SelectedTab = tabPagePrincipal;
             grpNouvMission.Visible = true;
+            grpTableauBord.Controls.Clear();    //Leo , clear la groupbox qui affiche les missions pour eviter les bugs où des missions sont déja affichées.
             // AMANDINE
         }
 
@@ -295,6 +298,7 @@ namespace SAE24STARGATE
             // Permet de changer de plan et de voir la tabPage principale, et d'afficher le bon groupBox (ici Infos Planètes)
             tabMenu.SelectedTab = tabPagePrincipal;
             grpInfosPlan.Visible = true;
+            grpTableauBord.Controls.Clear();    //Leo , clear la groupbox qui affiche les missions pour eviter les bugs où des missions sont déja affichées.
             // AMANDINE
         }
 
