@@ -268,9 +268,9 @@
             this.panelAliens.AutoScroll = true;
             this.panelAliens.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panelAliens.ForeColor = System.Drawing.Color.Black;
-            this.panelAliens.Location = new System.Drawing.Point(25, 35);
+            this.panelAliens.Location = new System.Drawing.Point(21, 220);
             this.panelAliens.Name = "panelAliens";
-            this.panelAliens.Size = new System.Drawing.Size(905, 582);
+            this.panelAliens.Size = new System.Drawing.Size(910, 580);
             this.panelAliens.TabIndex = 7;
             // 
             // grpFiltres
@@ -282,9 +282,9 @@
             this.grpFiltres.Controls.Add(this.lblNomAlien);
             this.grpFiltres.Font = new System.Drawing.Font("Orbitron", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpFiltres.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(107)))), ((int)(((byte)(255)))));
-            this.grpFiltres.Location = new System.Drawing.Point(25, 630);
+            this.grpFiltres.Location = new System.Drawing.Point(21, 20);
             this.grpFiltres.Name = "grpFiltres";
-            this.grpFiltres.Size = new System.Drawing.Size(905, 180);
+            this.grpFiltres.Size = new System.Drawing.Size(910, 180);
             this.grpFiltres.TabIndex = 1;
             this.grpFiltres.TabStop = false;
             this.grpFiltres.Text = "Filtres";
@@ -295,7 +295,7 @@
             this.btnRechercherAliens.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnRechercherAliens.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRechercherAliens.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnRechercherAliens.Location = new System.Drawing.Point(772, 44);
+            this.btnRechercherAliens.Location = new System.Drawing.Point(785, 42);
             this.btnRechercherAliens.Name = "btnRechercherAliens";
             this.btnRechercherAliens.Size = new System.Drawing.Size(95, 95);
             this.btnRechercherAliens.TabIndex = 4;
@@ -309,9 +309,9 @@
             this.cboCouleursAliens.Font = new System.Drawing.Font("Orbitron", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCouleursAliens.ForeColor = System.Drawing.Color.White;
             this.cboCouleursAliens.FormattingEnabled = true;
-            this.cboCouleursAliens.Location = new System.Drawing.Point(192, 104);
+            this.cboCouleursAliens.Location = new System.Drawing.Point(182, 104);
             this.cboCouleursAliens.Name = "cboCouleursAliens";
-            this.cboCouleursAliens.Size = new System.Drawing.Size(509, 33);
+            this.cboCouleursAliens.Size = new System.Drawing.Size(546, 33);
             this.cboCouleursAliens.TabIndex = 3;
             // 
             // txtNomAliens
@@ -319,9 +319,9 @@
             this.txtNomAliens.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(107)))), ((int)(((byte)(255)))));
             this.txtNomAliens.Font = new System.Drawing.Font("Orbitron", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNomAliens.ForeColor = System.Drawing.Color.White;
-            this.txtNomAliens.Location = new System.Drawing.Point(192, 44);
+            this.txtNomAliens.Location = new System.Drawing.Point(182, 44);
             this.txtNomAliens.Name = "txtNomAliens";
-            this.txtNomAliens.Size = new System.Drawing.Size(509, 33);
+            this.txtNomAliens.Size = new System.Drawing.Size(546, 33);
             this.txtNomAliens.TabIndex = 2;
             this.txtNomAliens.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNomAliens_KeyPress);
             // 
@@ -341,9 +341,9 @@
             this.lblNomAlien.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(234)))), ((int)(((byte)(204)))));
             this.lblNomAlien.Location = new System.Drawing.Point(35, 46);
             this.lblNomAlien.Name = "lblNomAlien";
-            this.lblNomAlien.Size = new System.Drawing.Size(126, 25);
+            this.lblNomAlien.Size = new System.Drawing.Size(72, 25);
             this.lblNomAlien.TabIndex = 0;
-            this.lblNomAlien.Text = "Nom (like) :";
+            this.lblNomAlien.Text = "Nom :";
             // 
             // grpInfosPlan
             // 
