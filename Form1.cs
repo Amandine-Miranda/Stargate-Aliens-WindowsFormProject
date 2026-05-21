@@ -56,13 +56,24 @@ namespace SAE24STARGATE
 
             da2.Fill(monDS, "Couleurs");
 
-            cboCouleursAliens.DataSource = monDS.Tables["Couleurs"];
-            cboCouleursAliens.DisplayMember = "couleur";
+            cboCouleursAliens.Items.Add(" ");
+
+            foreach(DataRow ligne in monDS.Tables["Couleurs"].Rows)
+            {
+                cboCouleursAliens.Items.Add(ligne["couleur"].ToString());
+            }
+
             
             maConnec.Close();
             //AMANDINE
 
             //AMANDINE
+
+            cboCouleursAliens.SelectedIndex = 0;
+
+            //AMANDINE
+
+            //AMANDINE  
 
             int compteur = 0;
 
@@ -245,13 +256,504 @@ namespace SAE24STARGATE
             {
                 e.Handled = true;
             }
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                btnRechercherAliens_Click(sender, e);
+            }
+            // AMANDINE
+        }
+
+        private void cboCouleursAliens_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // AMANDINE
+            // Permet de chercher les aliens quand on appuie sur la touche Entrée
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                btnRechercherAliens_Click(sender, e);
+            }
             // AMANDINE
         }
 
         private void btnRechercherAliens_Click(object sender, EventArgs e)
         {
+            // AMANDINE
+            // Permet de chercher les aliens selon quels zones sont remplies
+            if(txtNomAliens.Text == "" && cboCouleursAliens.SelectedIndex == 0)
+            {
+                panelAliens.Controls.Clear();
+                toutAfficher(sender, e);
+            }
+
+            if(txtNomAliens.Text != "")
+            { 
+                panelAliens.Controls.Clear();
+                trierParNom(sender, e, txtNomAliens.Text);
+            }
+
+            if (cboCouleursAliens.SelectedIndex != 0)
+            {
+                panelAliens.Controls.Clear();
+                trierParCouleur(sender, e, cboCouleursAliens.SelectedItem.ToString());
+            } 
+
+            if(txtNomAliens.Text != "" && cboCouleursAliens.SelectedIndex != 0)
+            {
+                panelAliens.Controls.Clear();
+                trierParNomEtParCouleur(sender, e, txtNomAliens.Text, cboCouleursAliens.SelectedItem.ToString());
+            }
+            // AMANDINE
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        private void trierParNom(object sender, EventArgs e, String txtRecherche)
+        {
+            int compteur = 0;
+
+            int top = 5;
+            int left = 10;
+
+            System.Drawing.ContentAlignment ca = ContentAlignment.TopLeft;
+
+            String armeOuInstrument = "";
+
+            Boolean arme = false;
+
+            String nvBvDg = "";
+
+            foreach (DataRow ligne in monDS.Tables["Espece"].Rows)
+            {
+                if (ligne["nom"].ToString().ToUpper().Contains(txtRecherche.ToUpper()))
+                {
+                    String origine = "?";
+
+                    foreach (DataRow ligne2 in monDS.Tables["Habiter"].Rows)
+                    {
+                        if (ligne2["idEspece"].ToString() == ligne["id"].ToString())
+                        {
+                            if (origine == "?")
+                            {
+                                origine = ligne2["nomPlanete"].ToString() + "/";
+                            }
+                            else
+                            {
+                                origine += ligne2["nomPlanete"].ToString() + "/";
+                            }
+                        }
+                    }
+
+                    if (origine.Substring(origine.Length - 1, 1) == "/")
+                    {
+                        origine = origine.Substring(0, origine.Length - 1);
+                    }
+
+                    if (origine == "?")
+                    {
+                        ca = ContentAlignment.TopCenter;
+                    }
+
+
+                    //Permet de savoir si l'alien actuel est un allié
+                    foreach (DataRow ligne2 in monDS.Tables["Allie"].Rows)
+                    {
+                        if (ligne2["idEspece"].ToString() == ligne["id"].ToString())
+                        {
+                            arme = false;
+                            armeOuInstrument = ligne2["instrumentMusique"].ToString();
+                            nvBvDg = ligne2["degreBienveillance"].ToString();
+
+                            break;
+                        }
+                    }
+
+                    //Permet de savoir si l'alien actuel est un ennemi
+                    foreach (DataRow ligne3 in monDS.Tables["Ennemi"].Rows)
+                    {
+                        if (ligne3["idEspece"].ToString() == ligne["id"].ToString())
+                        {
+                            arme = true;
+                            armeOuInstrument = ligne3["typeArme"].ToString();
+                            nvBvDg = ligne3["degreAgressivite"].ToString();
+
+                            break;
+                        }
+                    }
+
+                    SAE24STARGATE.Alien alien = new Alien(ligne["nom"].ToString(), ligne["couleur"].ToString(), origine, armeOuInstrument, "", arme, nvBvDg, left, top);
+
+                    alien.setAlignement = ca;
+
+                    panelAliens.Controls.Add(alien);
+
+                    compteur++;
+
+                    if (compteur % 4 == 0)
+                    {
+                        left = 10;
+                        top += alien.Height + 15;
+                    }
+                    else
+                    {
+                        left += alien.Width + 15;
+                    }
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        private void trierParCouleur(object sender, EventArgs e, String couleurChoisie)
+        {
+            int compteur = 0;
+
+            int top = 5;
+            int left = 10;
+
+            System.Drawing.ContentAlignment ca = ContentAlignment.TopLeft;
+
+            String armeOuInstrument = "";
+
+            Boolean arme = false;
+
+            String nvBvDg = "";
+
+            foreach (DataRow ligne in monDS.Tables["Espece"].Rows)
+            {
+                if (ligne["couleur"].ToString().ToUpper() == couleurChoisie.ToUpper())
+                {
+
+                    String origine = "?";
+
+                    foreach (DataRow ligne2 in monDS.Tables["Habiter"].Rows)
+                    {
+                        if (ligne2["idEspece"].ToString() == ligne["id"].ToString())
+                        {
+                            if (origine == "?")
+                            {
+                                origine = ligne2["nomPlanete"].ToString() + "/";
+                            }
+                            else
+                            {
+                                origine += ligne2["nomPlanete"].ToString() + "/";
+                            }
+                        }
+                    }
+
+                    if (origine.Substring(origine.Length - 1, 1) == "/")
+                    {
+                        origine = origine.Substring(0, origine.Length - 1);
+                    }
+
+                    if (origine == "?")
+                    {
+                        ca = ContentAlignment.TopCenter;
+                    }
+
+
+                    //Permet de savoir si l'alien actuel est un allié
+                    foreach (DataRow ligne2 in monDS.Tables["Allie"].Rows)
+                    {
+                        if (ligne2["idEspece"].ToString() == ligne["id"].ToString())
+                        {
+                            arme = false;
+                            armeOuInstrument = ligne2["instrumentMusique"].ToString();
+                            nvBvDg = ligne2["degreBienveillance"].ToString();
+
+                            break;
+                        }
+                    }
+
+                    //Permet de savoir si l'alien actuel est un ennemi
+                    foreach (DataRow ligne3 in monDS.Tables["Ennemi"].Rows)
+                    {
+                        if (ligne3["idEspece"].ToString() == ligne["id"].ToString())
+                        {
+                            arme = true;
+                            armeOuInstrument = ligne3["typeArme"].ToString();
+                            nvBvDg = ligne3["degreAgressivite"].ToString();
+
+                            break;
+                        }
+                    }
+
+                    SAE24STARGATE.Alien alien = new Alien(ligne["nom"].ToString(), ligne["couleur"].ToString(), origine, armeOuInstrument, "", arme, nvBvDg, left, top);
+
+                    alien.setAlignement = ca;
+
+                    panelAliens.Controls.Add(alien);
+
+                    compteur++;
+
+                    if (compteur % 4 == 0)
+                    {
+                        left = 10;
+                        top += alien.Height + 15;
+                    }
+                    else
+                    {
+                        left += alien.Width + 15;
+                    }
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+        private void toutAfficher(object sender, EventArgs e)
+        {
+            int compteur = 0;
+
+            int top = 5;
+            int left = 10;
+
+            System.Drawing.ContentAlignment ca = ContentAlignment.TopLeft;
+
+            String armeOuInstrument = "";
+
+            Boolean arme = false;
+
+            String nvBvDg = "";
+
+            foreach (DataRow ligne in monDS.Tables["Espece"].Rows)
+            {
+                String origine = "?";
+
+                foreach (DataRow ligne2 in monDS.Tables["Habiter"].Rows)
+                {
+                    if (ligne2["idEspece"].ToString() == ligne["id"].ToString())
+                    {
+                        if (origine == "?")
+                        {
+                            origine = ligne2["nomPlanete"].ToString() + "/";
+                        }
+                        else
+                        {
+                            origine += ligne2["nomPlanete"].ToString() + "/";
+                        }
+                    }
+                }
+
+                if (origine.Substring(origine.Length - 1, 1) == "/")
+                {
+                    origine = origine.Substring(0, origine.Length - 1);
+                }
+
+                if (origine == "?")
+                {
+                    ca = ContentAlignment.TopCenter;
+                }
+
+
+                //Permet de savoir si l'alien actuel est un allié
+                foreach (DataRow ligne2 in monDS.Tables["Allie"].Rows)
+                {
+                    if (ligne2["idEspece"].ToString() == ligne["id"].ToString())
+                    {
+                        arme = false;
+                        armeOuInstrument = ligne2["instrumentMusique"].ToString();
+                        nvBvDg = ligne2["degreBienveillance"].ToString();
+
+                        break;
+                    }
+                }
+
+                //Permet de savoir si l'alien actuel est un ennemi
+                foreach (DataRow ligne3 in monDS.Tables["Ennemi"].Rows)
+                {
+                    if (ligne3["idEspece"].ToString() == ligne["id"].ToString())
+                    {
+                        arme = true;
+                        armeOuInstrument = ligne3["typeArme"].ToString();
+                        nvBvDg = ligne3["degreAgressivite"].ToString();
+
+                        break;
+                    }
+                }
+
+                SAE24STARGATE.Alien alien = new Alien(ligne["nom"].ToString(), ligne["couleur"].ToString(), origine, armeOuInstrument, "", arme, nvBvDg, left, top);
+
+                alien.setAlignement = ca;
+
+                panelAliens.Controls.Add(alien);
+
+                compteur++;
+
+                if (compteur % 4 == 0)
+                {
+                    left = 10;
+                    top += alien.Height + 15;
+                }
+                else
+                {
+                    left += alien.Width + 15;
+                }
+            }
+        }
+
+
+
+
+
+
+
+        private void trierParNomEtParCouleur(object sender, EventArgs e, String txtRecherche, String couleurChoisie)
+        {
+
+            int compteur = 0;
+
+            int top = 5;
+            int left = 10;
+
+            System.Drawing.ContentAlignment ca = ContentAlignment.TopLeft;
+
+            String armeOuInstrument = "";
+
+            Boolean arme = false;
+
+            String nvBvDg = "";
+
+            foreach (DataRow ligne in monDS.Tables["Espece"].Rows)
+            {
+                if (ligne["nom"].ToString().ToUpper().Contains(txtRecherche.ToUpper()) && ligne["couleur"].ToString().ToUpper() == couleurChoisie.ToUpper())
+                {
+                    String origine = "?";
+
+                    foreach (DataRow ligne2 in monDS.Tables["Habiter"].Rows)
+                    {
+                        if (ligne2["idEspece"].ToString() == ligne["id"].ToString())
+                        {
+                            if (origine == "?")
+                            {
+                                origine = ligne2["nomPlanete"].ToString() + "/";
+                            }
+                            else
+                            {
+                                origine += ligne2["nomPlanete"].ToString() + "/";
+                            }
+                        }
+                    }
+
+                    if (origine.Substring(origine.Length - 1, 1) == "/")
+                    {
+                        origine = origine.Substring(0, origine.Length - 1);
+                    }
+
+                    if (origine == "?")
+                    {
+                        ca = ContentAlignment.TopCenter;
+                    }
+
+
+                    //Permet de savoir si l'alien actuel est un allié
+                    foreach (DataRow ligne2 in monDS.Tables["Allie"].Rows)
+                    {
+                        if (ligne2["idEspece"].ToString() == ligne["id"].ToString())
+                        {
+                            arme = false;
+                            armeOuInstrument = ligne2["instrumentMusique"].ToString();
+                            nvBvDg = ligne2["degreBienveillance"].ToString();
+
+                            break;
+                        }
+                    }
+
+                    //Permet de savoir si l'alien actuel est un ennemi
+                    foreach (DataRow ligne3 in monDS.Tables["Ennemi"].Rows)
+                    {
+                        if (ligne3["idEspece"].ToString() == ligne["id"].ToString())
+                        {
+                            arme = true;
+                            armeOuInstrument = ligne3["typeArme"].ToString();
+                            nvBvDg = ligne3["degreAgressivite"].ToString();
+
+                            break;
+                        }
+                    }
+
+                    SAE24STARGATE.Alien alien = new Alien(ligne["nom"].ToString(), ligne["couleur"].ToString(), origine, armeOuInstrument, "", arme, nvBvDg, left, top);
+
+                    alien.setAlignement = ca;
+
+                    panelAliens.Controls.Add(alien);
+
+                    compteur++;
+
+                    if (compteur % 4 == 0)
+                    {
+                        left = 10;
+                        top += alien.Height + 15;
+                    }
+                    else
+                    {
+                        left += alien.Width + 15;
+                    }
+                }
+            }
 
         }
 
     }
+
+
 }

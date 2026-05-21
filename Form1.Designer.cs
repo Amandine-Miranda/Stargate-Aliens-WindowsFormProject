@@ -313,6 +313,7 @@
             this.cboCouleursAliens.Name = "cboCouleursAliens";
             this.cboCouleursAliens.Size = new System.Drawing.Size(546, 33);
             this.cboCouleursAliens.TabIndex = 3;
+            this.cboCouleursAliens.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboCouleursAliens_KeyPress);
             // 
             // txtNomAliens
             // 
