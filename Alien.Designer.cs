@@ -40,7 +40,8 @@
             // 
             // pbox
             // 
-            this.pbox.BackColor = System.Drawing.Color.BlanchedAlmond;
+            this.pbox.BackColor = System.Drawing.Color.Black;
+            this.pbox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pbox.Location = new System.Drawing.Point(10, 30);
             this.pbox.Name = "pbox";
             this.pbox.Size = new System.Drawing.Size(175, 175);
@@ -124,6 +125,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.lblAllieEnnemi);
             this.Controls.Add(this.lblNom);
             this.Controls.Add(this.lblCouleur);
@@ -132,7 +134,7 @@
             this.Controls.Add(this.lblArmeInstrument);
             this.Controls.Add(this.pbox);
             this.Name = "Alien";
-            this.Size = new System.Drawing.Size(195, 465);
+            this.Size = new System.Drawing.Size(195, 470);
             ((System.ComponentModel.ISupportInitialize)(this.pbox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SAE24STARGATE.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,14 +18,15 @@ namespace SAE24STARGATE
             InitializeComponent();
         }
 
-        public Alien(String nom, String couleur, String origine, String armeOuInstrument, String cheminImage, Boolean arme, String niveauBienveillanceDangerosite, int posLeft, int posTop)
+        public Alien(String nom, String couleur, String origine, String armeOuInstrument, Boolean arme, String niveauBienveillanceDangerosite, int posLeft, int posTop)
         {
             InitializeComponent();
             lblNom.Text = "-> " + nom;
             lblCouleur.Text = couleur;
             lblOrigine.Text = origine;
             lblArmeInstrument.Text = armeOuInstrument;
-            //pbox.Image = Image.FromFile(cheminImage);
+            pbox.BackgroundImage = Image.FromFile("../../Resources/" + couleur + ".png");
+
             if (arme)
             {
                 lblArmeInstrument.ForeColor = Color.FromArgb(184, 143, 255); //violet
