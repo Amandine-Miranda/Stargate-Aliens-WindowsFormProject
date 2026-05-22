@@ -39,6 +39,7 @@
             this.btnDecouvRaces = new System.Windows.Forms.Button();
             this.btnNouvMission = new System.Windows.Forms.Button();
             this.BtnInfosPlan = new System.Windows.Forms.Button();
+            this.grpInfosPlan = new System.Windows.Forms.GroupBox();
             this.grpDecouvRaces = new System.Windows.Forms.GroupBox();
             this.panelAliens = new System.Windows.Forms.Panel();
             this.grpFiltres = new System.Windows.Forms.GroupBox();
@@ -47,16 +48,17 @@
             this.txtNomAliens = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblNomAlien = new System.Windows.Forms.Label();
-            this.grpInfosPlan = new System.Windows.Forms.GroupBox();
             this.grpTableauBord = new System.Windows.Forms.GroupBox();
             this.btnFutur = new System.Windows.Forms.Button();
             this.btnPasse = new System.Windows.Forms.Button();
             this.btnPresent = new System.Windows.Forms.Button();
             this.grpMissionsTDB = new System.Windows.Forms.GroupBox();
             this.grpNouvMission = new System.Windows.Forms.GroupBox();
+            this.panelPlanetes = new System.Windows.Forms.Panel();
             this.tabMenu.SuspendLayout();
             this.tabPageMenu.SuspendLayout();
             this.tabPagePrincipal.SuspendLayout();
+            this.grpInfosPlan.SuspendLayout();
             this.grpDecouvRaces.SuspendLayout();
             this.grpFiltres.SuspendLayout();
             this.grpTableauBord.SuspendLayout();
@@ -180,8 +182,8 @@
             this.tabPagePrincipal.Controls.Add(this.btnDecouvRaces);
             this.tabPagePrincipal.Controls.Add(this.btnNouvMission);
             this.tabPagePrincipal.Controls.Add(this.BtnInfosPlan);
-            this.tabPagePrincipal.Controls.Add(this.grpDecouvRaces);
             this.tabPagePrincipal.Controls.Add(this.grpInfosPlan);
+            this.tabPagePrincipal.Controls.Add(this.grpDecouvRaces);
             this.tabPagePrincipal.Controls.Add(this.grpTableauBord);
             this.tabPagePrincipal.Controls.Add(this.grpNouvMission);
             this.tabPagePrincipal.Location = new System.Drawing.Point(4, 29);
@@ -250,6 +252,17 @@
             this.BtnInfosPlan.TabIndex = 3;
             this.BtnInfosPlan.UseVisualStyleBackColor = true;
             this.BtnInfosPlan.Click += new System.EventHandler(this.BtnInfosPlan_Click);
+            // 
+            // grpInfosPlan
+            // 
+            this.grpInfosPlan.Controls.Add(this.panelPlanetes);
+            this.grpInfosPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.grpInfosPlan.Location = new System.Drawing.Point(290, 20);
+            this.grpInfosPlan.Name = "grpInfosPlan";
+            this.grpInfosPlan.Size = new System.Drawing.Size(950, 825);
+            this.grpInfosPlan.TabIndex = 6;
+            this.grpInfosPlan.TabStop = false;
+            this.grpInfosPlan.Visible = false;
             // 
             // grpDecouvRaces
             // 
@@ -346,16 +359,6 @@
             this.lblNomAlien.TabIndex = 0;
             this.lblNomAlien.Text = "Nom :";
             // 
-            // grpInfosPlan
-            // 
-            this.grpInfosPlan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.grpInfosPlan.Location = new System.Drawing.Point(290, 20);
-            this.grpInfosPlan.Name = "grpInfosPlan";
-            this.grpInfosPlan.Size = new System.Drawing.Size(950, 825);
-            this.grpInfosPlan.TabIndex = 6;
-            this.grpInfosPlan.TabStop = false;
-            this.grpInfosPlan.Visible = false;
-            // 
             // grpTableauBord
             // 
             this.grpTableauBord.BackColor = System.Drawing.Color.Black;
@@ -423,6 +426,14 @@
             this.grpNouvMission.TabStop = false;
             this.grpNouvMission.Visible = false;
             // 
+            // panelPlanetes
+            // 
+            this.panelPlanetes.AutoScroll = true;
+            this.panelPlanetes.Location = new System.Drawing.Point(5, 15);
+            this.panelPlanetes.Name = "panelPlanetes";
+            this.panelPlanetes.Size = new System.Drawing.Size(940, 805);
+            this.panelPlanetes.TabIndex = 0;
+            // 
             // frmAccueil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -439,6 +450,7 @@
             this.tabMenu.ResumeLayout(false);
             this.tabPageMenu.ResumeLayout(false);
             this.tabPagePrincipal.ResumeLayout(false);
+            this.grpInfosPlan.ResumeLayout(false);
             this.grpDecouvRaces.ResumeLayout(false);
             this.grpFiltres.ResumeLayout(false);
             this.grpFiltres.PerformLayout();
@@ -475,6 +487,7 @@
         private System.Windows.Forms.TextBox txtNomAliens;
         private System.Windows.Forms.Button btnRechercherAliens;
         private System.Windows.Forms.Panel panelAliens;
+        private System.Windows.Forms.Panel panelPlanetes;
     }
 }
 

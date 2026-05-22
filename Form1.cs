@@ -35,7 +35,7 @@ namespace SAE24STARGATE
             maConnec.Open();
             DataTable dtSchema = maConnec.GetSchema("Tables");
 
-            for (int i = 1; i < dtSchema.Rows.Count; i++)
+            for (int i = 0; i < dtSchema.Rows.Count; i++)
             {
                 string nomTable = dtSchema.Rows[i]["TABLE_NAME"].ToString();
 
@@ -144,7 +144,7 @@ namespace SAE24STARGATE
                     }
                 }
 
-                SAE24STARGATE.Alien alien = new Alien(ligne["nom"].ToString(), ligne["couleur"].ToString(), origine, armeOuInstrument, "", arme, nvBvDg, left, top);
+                SAE24STARGATE.Alien alien = new Alien(ligne["nom"].ToString(), ligne["couleur"].ToString(), origine, armeOuInstrument, arme, nvBvDg, left, top);
 
                 alien.setAlignement = ca;
 
@@ -166,7 +166,36 @@ namespace SAE24STARGATE
 
             //AMANDINE
 
+            int top2 = 20;
+            int left2 = 15;
+            int compteur2 = 0;
+
+            //AMANDINE
+            // Permet de charger tous les UserControl planete
+
+
+            foreach(DataRow ligne4 in monDS.Tables["Planete"].Rows)
+            {
+                SAE24STARGATE.Planete planete = new Planete(ligne4["nom"].ToString(), top2, left2, monDS);
+
+                panelPlanetes.Controls.Add(planete);
+
+                compteur2++;
+
+                if (compteur2 % 4 == 0)
+                {
+                    left2 = 15;
+                    top2 += planete.Height + 20;
+                }
+                else
+                {
+                    left2 += planete.Width + 20;
+                }
+            }
+
         }
+
+
 
         private void btnTableauBord_Click(object sender, EventArgs e)
         {
@@ -421,7 +450,7 @@ namespace SAE24STARGATE
                         }
                     }
 
-                    SAE24STARGATE.Alien alien = new Alien(ligne["nom"].ToString(), ligne["couleur"].ToString(), origine, armeOuInstrument, "", arme, nvBvDg, left, top);
+                    SAE24STARGATE.Alien alien = new Alien(ligne["nom"].ToString(), ligne["couleur"].ToString(), origine, armeOuInstrument, arme, nvBvDg, left, top);
 
                     alien.setAlignement = ca;
 
@@ -529,7 +558,7 @@ namespace SAE24STARGATE
                         }
                     }
 
-                    SAE24STARGATE.Alien alien = new Alien(ligne["nom"].ToString(), ligne["couleur"].ToString(), origine, armeOuInstrument, "", arme, nvBvDg, left, top);
+                    SAE24STARGATE.Alien alien = new Alien(ligne["nom"].ToString(), ligne["couleur"].ToString(), origine, armeOuInstrument, arme, nvBvDg, left, top);
 
                     alien.setAlignement = ca;
 
@@ -631,7 +660,7 @@ namespace SAE24STARGATE
                     }
                 }
 
-                SAE24STARGATE.Alien alien = new Alien(ligne["nom"].ToString(), ligne["couleur"].ToString(), origine, armeOuInstrument, "", arme, nvBvDg, left, top);
+                SAE24STARGATE.Alien alien = new Alien(ligne["nom"].ToString(), ligne["couleur"].ToString(), origine, armeOuInstrument, arme, nvBvDg, left, top);
 
                 alien.setAlignement = ca;
 
@@ -731,7 +760,7 @@ namespace SAE24STARGATE
                         }
                     }
 
-                    SAE24STARGATE.Alien alien = new Alien(ligne["nom"].ToString(), ligne["couleur"].ToString(), origine, armeOuInstrument, "", arme, nvBvDg, left, top);
+                    SAE24STARGATE.Alien alien = new Alien(ligne["nom"].ToString(), ligne["couleur"].ToString(), origine, armeOuInstrument, arme, nvBvDg, left, top);
 
                     alien.setAlignement = ca;
 

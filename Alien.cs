@@ -18,7 +18,7 @@ namespace SAE24STARGATE
             InitializeComponent();
         }
 
-        public Alien(String nom, String couleur, String origine, String armeOuInstrument, String cheminImage, Boolean arme, String niveauBienveillanceDangerosite, int posLeft, int posTop)
+        public Alien(String nom, String couleur, String origine, String armeOuInstrument, Boolean arme, String niveauBienveillanceDangerosite, int posLeft, int posTop)
         {
             InitializeComponent();
             lblNom.Text = "-> " + nom;
