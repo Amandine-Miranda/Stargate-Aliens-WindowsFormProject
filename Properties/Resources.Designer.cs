@@ -73,6 +73,16 @@ namespace SAE24STARGATE.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap boutonMenu {
+            get {
+                object obj = ResourceManager.GetObject("boutonMenu", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap btnDecouvRaces {
             get {
                 object obj = ResourceManager.GetObject("btnDecouvRaces", resourceCulture);

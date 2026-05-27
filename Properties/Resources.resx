@@ -124,6 +124,9 @@
   <data name="btnDecouvRaces" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\btnDecouvRaces.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="iconeLoupe1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\iconeLoupe.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="btnTableauBord" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\btnTableauBord.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -136,7 +139,7 @@
   <data name="BGimg1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BGimg1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="iconeLoupe1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\iconeLoupe.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="boutonMenu" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\boutonMenu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
