@@ -28,6 +28,9 @@ namespace SAE24STARGATE
         //AMANDINE
         private void frmAccueil_Load(object sender, EventArgs e)
         {
+
+            grpTableauBord.Visible = true;
+
             //AMANDINE
             //permet d'initialiser le mode déconnecté de la base de données et de mettre la base de données dans monDS, le dataSet
             maConnec.ConnectionString = connecString;
@@ -58,12 +61,12 @@ namespace SAE24STARGATE
 
             cboCouleursAliens.Items.Add(" ");
 
-            foreach(DataRow ligne in monDS.Tables["Couleurs"].Rows)
+            foreach (DataRow ligne in monDS.Tables["Couleurs"].Rows)
             {
                 cboCouleursAliens.Items.Add(ligne["couleur"].ToString());
             }
 
-            
+
             maConnec.Close();
             //AMANDINE
 
@@ -112,7 +115,7 @@ namespace SAE24STARGATE
                     origine = origine.Substring(0, origine.Length - 1);
                 }
 
-                if(origine == "?")
+                if (origine == "?")
                 {
                     ca = ContentAlignment.TopCenter;
                 }
@@ -152,7 +155,7 @@ namespace SAE24STARGATE
 
                 compteur++;
 
-                if(compteur % 4 == 0)
+                if (compteur % 4 == 0)
                 {
                     left = 10;
                     top += alien.Height + 15;
@@ -174,7 +177,7 @@ namespace SAE24STARGATE
             // Permet de charger tous les UserControl planete
 
 
-            foreach(DataRow ligne4 in monDS.Tables["Planete"].Rows)
+            foreach (DataRow ligne4 in monDS.Tables["Planete"].Rows)
             {
                 SAE24STARGATE.Planete planete = new Planete(ligne4["nom"].ToString(), top2, left2, monDS);
 
@@ -192,6 +195,44 @@ namespace SAE24STARGATE
                     left2 += planete.Width + 20;
                 }
             }
+
+            //AMANDINE
+            // Permet de remplir la cboNoms dans la page Statistiques
+
+            monDS.Tables["Membre"].Columns.Add("prenomNom", typeof(string), "prenom + ' ' + nom");
+
+            DataView vueTriee = monDS.Tables["Membre"].DefaultView;
+            vueTriee.Sort = "prenomNom ASC";
+
+            cboNoms.DataSource = vueTriee;
+            cboNoms.DisplayMember = "prenomNom";
+            cboNoms.ValueMember = "matricule";
+
+
+            //AMANDINE
+            // Permet de remplir la cboMission dans la page Statistiques
+
+            monDS.Tables["Mission"].Columns.Add("MissionPlanete", typeof(string), "nomPlanete + ' ' + numero");
+
+            foreach (DataRow ligne in monDS.Tables["Mission"].Rows)
+            {
+                int nbPersonnesMission = 0;
+
+                foreach (DataRow ligne2 in monDS.Tables["Composer"].Rows)
+                {
+                    if (ligne2["nomPlanete"].ToString() + " " + ligne2["numeroMission"].ToString() == ligne["MissionPlanete"].ToString())
+                    {
+                        nbPersonnesMission++;
+                    }
+                }
+
+                if (nbPersonnesMission < 10)// Temporairement inversé pour tester les stats
+                {
+                    cboChoixMission.Items.Add(ligne["MissionPlanete"]);
+                }
+            }
+
+            //Note : y'a pas de mission qui correspond sur la DB de base, mais après avoir fait une mission test et l'avoir supprimé, mon code marche ! -Am
 
         }
 
@@ -281,7 +322,7 @@ namespace SAE24STARGATE
         {
             // AMANDINE
             // Permet de n'autoriser que les lettres et le retour arrière, shift, espace, entrée etc... Dans la zone de texte permettant de rentrer le nom des aliens
-            if(!(Char.IsLetter(e.KeyChar)) && !(Char.IsControl(e.KeyChar)))
+            if (!(Char.IsLetter(e.KeyChar)) && !(Char.IsControl(e.KeyChar)))
             {
                 e.Handled = true;
             }
@@ -307,14 +348,14 @@ namespace SAE24STARGATE
         {
             // AMANDINE
             // Permet de chercher les aliens selon quels zones sont remplies
-            if(txtNomAliens.Text == "" && cboCouleursAliens.SelectedIndex == 0)
+            if (txtNomAliens.Text == "" && cboCouleursAliens.SelectedIndex == 0)
             {
                 panelAliens.Controls.Clear();
                 toutAfficher(sender, e);
             }
 
-            if(txtNomAliens.Text != "")
-            { 
+            if (txtNomAliens.Text != "")
+            {
                 panelAliens.Controls.Clear();
                 trierParNom(sender, e, txtNomAliens.Text);
             }
@@ -323,9 +364,9 @@ namespace SAE24STARGATE
             {
                 panelAliens.Controls.Clear();
                 trierParCouleur(sender, e, cboCouleursAliens.SelectedItem.ToString());
-            } 
+            }
 
-            if(txtNomAliens.Text != "" && cboCouleursAliens.SelectedIndex != 0)
+            if (txtNomAliens.Text != "" && cboCouleursAliens.SelectedIndex != 0)
             {
                 panelAliens.Controls.Clear();
                 trierParNomEtParCouleur(sender, e, txtNomAliens.Text, cboCouleursAliens.SelectedItem.ToString());
@@ -782,7 +823,144 @@ namespace SAE24STARGATE
 
         }
 
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+            tabMenu.SelectedTab = tabPageMenu;
+        }
+
+        private void btnPageStatistiques_Click(object sender, EventArgs e)
+        {
+            tabMenu.SelectedTab = tabPageStatistiques;
+        }
+
+        private void btnMenuStats_Click(object sender, EventArgs e)
+        {
+            tabMenu.SelectedTab = tabPageMenu;
+        }
+
+        private void btnRechercheCoequipiers_Click(object sender, EventArgs e)
+        {
+
+            lblCoequipiersTitre.Focus();
+
+            string Coequipiers = "";
+
+            List<string> missionsSelectionnees = new List<string>();
+
+            foreach (DataRow ligne in monDS.Tables["Composer"].Rows)
+            {
+                if (cboNoms.SelectedValue.ToString() == ligne["matriculeMembre"].ToString())
+                {
+                    missionsSelectionnees.Add(ligne["numeroMission"].ToString());
+                }
+            }
+
+            HashSet<string> coequipiers = new HashSet<string>();
+
+
+            foreach (string mission in missionsSelectionnees)
+            {
+                foreach (DataRow ligne in monDS.Tables["Composer"].Rows)
+                {
+                    if (mission == ligne["numeroMission"].ToString())
+                    {
+                        foreach (DataRow ligne2 in monDS.Tables["Membre"].Rows)
+                        {
+                            if (ligne["matriculeMembre"].ToString() == ligne2["matricule"].ToString())
+                            {
+                                string nomComplet = ligne2["prenom"] + " " + ligne2["nom"] + " :  ";
+
+                                if (ligne2["matricule"].ToString().Contains("C"))
+                                {
+                                    nomComplet += "Civil";
+                                }
+
+                                else if (ligne2["matricule"].ToString().Contains("M"))
+                                {
+                                    nomComplet += "Militaire";
+                                }
+
+                                else
+                                {
+                                    nomComplet += "??";
+                                }
+
+                                if (ligne2["matricule"].ToString() != cboNoms.SelectedValue.ToString())
+                                {
+                                    coequipiers.Add(nomComplet);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (coequipiers.Count == 0)
+            {
+                MessageBox.Show("Pas de coéquipiers pour " + cboNoms.Text, "Coequipiers de " + cboNoms.Text);
+            }
+
+            else
+            {
+                List<string> listeTriee = coequipiers.ToList();
+                listeTriee.Sort();
+
+                foreach (string nom in listeTriee)
+                {
+                    Coequipiers += nom + "\n";
+                }
+
+                MessageBox.Show(Coequipiers, "Coequipiers de " + cboNoms.Text);
+            }
+        }
+
+        private void btnRechercherBudget_Click(object sender, EventArgs e)
+        {
+            if(cboChoixMission.Text == "")
+            {
+                MessageBox.Show("Mission nulle");
+            }
+
+            else
+            {
+                string resultat = "Budget initial : ";
+
+                int budgetInitial = 0;
+
+                int totalDepenses = 0;
+
+                foreach (DataRow ligne in monDS.Tables["Mission"].Rows)
+                {
+                    if (ligne["MissionPlanete"].ToString() == cboChoixMission.Text)
+                    {
+                        budgetInitial = Convert.ToInt32(ligne["budget"]);
+                        resultat += budgetInitial + "\n\nListe des dépenses :\n\n";
+                    }
+                }
+
+                foreach (DataRow ligne in monDS.Tables["Depense"].Rows)
+                {
+                    if (ligne["nomPlanete"].ToString() + " " + ligne["numeroMission"].ToString() == cboChoixMission.Text)
+                    {
+                        foreach (DataRow ligne2 in monDS.Tables["TypeDepense"].Rows)
+                        {
+                            if (ligne["idTypeDepense"].ToString() == ligne2["id"].ToString())
+                            {
+                                resultat += ligne2["libelle"] + " : ";
+                            }
+                        }
+
+                        resultat += ligne["motif"] + " le " + ligne["dateD"] + " => " + ligne["montant"] + "\n";
+
+                        totalDepenses += Convert.ToInt32(ligne["montant"]);
+                    }
+
+                }
+
+                resultat += "\nBudget total : " + (budgetInitial - totalDepenses).ToString();
+
+                MessageBox.Show(resultat, "Budget pour la mission " + cboChoixMission.Text);
+            }
+        }
     }
-
-
 }
