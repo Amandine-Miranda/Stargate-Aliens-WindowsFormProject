@@ -838,11 +838,12 @@ namespace SAE24STARGATE
             tabMenu.SelectedTab = tabPageMenu;
         }
 
-        private void cboNoms_SelectedValueChanged(object sender, EventArgs e)
+        private void btnRechercheCoequipiers_Click(object sender, EventArgs e)
         {
-            lblCoequipiers.Focus();
 
-            lblCoequipiers.Text = "";
+            lblCoequipiersTitre.Focus();
+
+            string Coequipiers = "";
 
             List<string> missionsSelectionnees = new List<string>();
 
@@ -894,56 +895,72 @@ namespace SAE24STARGATE
                 }
             }
 
-            List<string> listeTriee = coequipiers.ToList();
-            listeTriee.Sort();
-
-            foreach (string nom in listeTriee)
+            if (coequipiers.Count == 0)
             {
-                lblCoequipiers.Text += nom + Environment.NewLine;
+                MessageBox.Show("Pas de coéquipiers pour " + cboNoms.Text, "Coequipiers de " + cboNoms.Text);
+            }
+
+            else
+            {
+                List<string> listeTriee = coequipiers.ToList();
+                listeTriee.Sort();
+
+                foreach (string nom in listeTriee)
+                {
+                    Coequipiers += nom + "\n";
+                }
+
+                MessageBox.Show(Coequipiers, "Coequipiers de " + cboNoms.Text);
             }
         }
 
-        private void cboChoixMission_SelectedValueChanged(object sender, EventArgs e)
+        private void btnRechercherBudget_Click(object sender, EventArgs e)
         {
-
-            lblBudgInit.Text = "Budget initial : ";
-            lblBudgActu.Text = "Budget actuel : ";
-            lblLstDepenses.Text = "";
-
-            int budgetInitial = 0;
-
-            int totalDepenses = 0;
-
-            foreach (DataRow ligne in monDS.Tables["Mission"].Rows)
+            if(cboChoixMission.Text == "")
             {
-                if (ligne["MissionPlanete"].ToString() == cboChoixMission.Text)
-                {
-                    budgetInitial = Convert.ToInt32(ligne["budget"]);
-                    lblBudgInit.Text += budgetInitial;
-                }
+                MessageBox.Show("Mission nulle");
             }
 
-            foreach (DataRow ligne in monDS.Tables["Depense"].Rows)
+            else
             {
-                if (ligne["nomPlanete"].ToString() + " " + ligne["numeroMission"].ToString() == cboChoixMission.Text)
+                string resultat = "Budget initial : ";
+
+                int budgetInitial = 0;
+
+                int totalDepenses = 0;
+
+                foreach (DataRow ligne in monDS.Tables["Mission"].Rows)
                 {
-                    foreach (DataRow ligne2 in monDS.Tables["TypeDepense"].Rows)
+                    if (ligne["MissionPlanete"].ToString() == cboChoixMission.Text)
                     {
-                        if (ligne["idTypeDepense"].ToString() == ligne2["id"].ToString())
+                        budgetInitial = Convert.ToInt32(ligne["budget"]);
+                        resultat += budgetInitial + "\n\nListe des dépenses :\n\n";
+                    }
+                }
+
+                foreach (DataRow ligne in monDS.Tables["Depense"].Rows)
+                {
+                    if (ligne["nomPlanete"].ToString() + " " + ligne["numeroMission"].ToString() == cboChoixMission.Text)
+                    {
+                        foreach (DataRow ligne2 in monDS.Tables["TypeDepense"].Rows)
                         {
-                            lblLstDepenses.Text += ligne2["libelle"] + " : ";
+                            if (ligne["idTypeDepense"].ToString() == ligne2["id"].ToString())
+                            {
+                                resultat += ligne2["libelle"] + " : ";
+                            }
                         }
+
+                        resultat += ligne["motif"] + " le " + ligne["dateD"] + " => " + ligne["montant"] + "\n";
+
+                        totalDepenses += Convert.ToInt32(ligne["montant"]);
                     }
 
-                    lblLstDepenses.Text += ligne["motif"] + " le " + ligne["dateD"] + " => " + ligne["montant"] + "\n";
-
-                    totalDepenses += Convert.ToInt32(ligne["montant"]);
                 }
 
-            }
-            
-            lblBudgActu.Text += (budgetInitial - totalDepenses).ToString();
-        }
+                resultat += "\nBudget total : " + (budgetInitial - totalDepenses).ToString();
 
+                MessageBox.Show(resultat, "Budget pour la mission " + cboChoixMission.Text);
+            }
+        }
     }
 }
