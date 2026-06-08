@@ -119,6 +119,6 @@ La base de données `Stargate.db` contient les tables suivantes :
 
 ---
 
-## 👤 Auteur
+## 👤 Auteurs
 
-**Amandine Miranda** — Projet réalisé dans le cadre d'une SAE (Situation d'Apprentissage et d'Évaluation).
+**Amandine Miranda et Léo Galien** — Projet réalisé dans le cadre d'une SAE (Situation d'Apprentissage et d'Évaluation).
