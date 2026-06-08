@@ -6,7 +6,7 @@ Application de bureau **C# / Windows Forms** inspirée de l'univers Stargate, pe
 
 ## 📸 Aperçu
 
-![Menu principal](illustration.jpg)
+![Menu principal](screen0.png)
 
 | Découverte des races | Infos planète |
 |:---:|:---:|
