@@ -24,7 +24,7 @@ namespace SAE24STARGATE
             InitializeComponent();
 
             monDS = DS;
-
+            //MessageBox.Show(planete + " param frmPlanete");
             this.Text = this.Text + " " + planete;
             pboxPlanete.BackgroundImage = Image.FromFile("../../Resources/" + planete + ".png");
             lblNomPlanete.Text = planete;
@@ -101,20 +101,26 @@ namespace SAE24STARGATE
 
 
             foreach(DataRow ligne in monDS.Tables["Habiter"].Rows)
-            {
-                if (ligne["nomPlanete"].ToString() == planete)
+            {              
+                if (ligne["nomPlanete"].ToString().Contains(planete))
                 {
+
                     foreach (DataRow ligne2 in monDS.Tables["Espece"].Rows)
                     {
                         if (ligne2["id"].ToString() == ligne["idEspece"].ToString())
                         {
-                            Alien alien = new Alien(ligne2["nom"].ToString(), ligne2["couleur"].ToString(), planete, "", false, "", left, top);
+                            Alien alien = new Alien(ligne2["nom"].ToString(), ligne2["couleur"].ToString(), ligne["nomPlanete"].ToString(), "", false, "", left, top);
                             this.Controls.Add(alien);
                             left += alien.Width + 50;
                         }
                     }
                 }
             }
+        }
+
+        private void btnQuitter_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

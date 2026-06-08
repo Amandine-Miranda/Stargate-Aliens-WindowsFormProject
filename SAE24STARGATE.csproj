@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BCrypt.Net-Core, Version=1.6.0.0, Culture=neutral, PublicKeyToken=4d63bfbfdfd3c6e4, processorArchitecture=MSIL">
+      <HintPath>packages\BCrypt.Net-Core.1.6.0\lib\net452\BCrypt.Net-Core.dll</HintPath>
+    </Reference>
     <Reference Include="System">
       <HintPath>..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
     </Reference>
@@ -66,12 +69,31 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmAuthentification.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAuthentification.Designer.cs">
+      <DependentUpon>frmAuthentification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDetails.Designer.cs">
+      <DependentUpon>FrmDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNouvMissionSuite.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNouvMissionSuite.Designer.cs">
+      <DependentUpon>frmNouvMissionSuite.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPlanete.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmPlanete.Designer.cs">
       <DependentUpon>frmPlanete.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mission.cs" />
     <Compile Include="Planete.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -80,11 +102,32 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UCMembre.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCMembre.Designer.cs">
+      <DependentUpon>UCMembre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCMission.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCMission.Designer.cs">
+      <DependentUpon>UCMission.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Alien.resx">
       <DependentUpon>Alien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAuthentification.resx">
+      <DependentUpon>frmAuthentification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDetails.resx">
+      <DependentUpon>FrmDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNouvMissionSuite.resx">
+      <DependentUpon>frmNouvMissionSuite.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPlanete.resx">
       <DependentUpon>frmPlanete.cs</DependentUpon>
@@ -94,15 +137,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UCMembre.resx">
+      <DependentUpon>UCMembre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCMission.resx">
+      <DependentUpon>UCMission.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -136,6 +194,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\boutonMenu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconeOeilOuvert.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconeOeilFerme.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Aurae1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconeOeilFerme1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
