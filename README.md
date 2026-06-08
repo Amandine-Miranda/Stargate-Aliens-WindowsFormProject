@@ -18,14 +18,11 @@ Application de bureau **C# / Windows Forms** inspirée de l'univers Stargate, pe
 
 ---
 
-## ✨ Fonctionnalités
+## 🛠️ Stack technique
 
-- 🛸 **Tableau de bord** — vue d'ensemble des missions (passées, en cours, à venir)
-- 👽 **Découverte des races** — exploration des espèces extraterrestres avec filtres par nom et couleur (alliés en vert, ennemis en violet)
-- 🌍 **Infos planètes** — fiche détaillée de chaque planète (gravité, température, présence DataBaz, espèces habitant la planète)
-- 🔐 **Authentification** — accès à la création de missions réservé aux administrateurs
-- 📋 **Gestion des missions** — création, composition d'équipe, suivi du budget et journal de bord
-- 📊 **Statistiques** — coéquipiers par membre et suivi budgétaire des missions
+- **C#** — Windows Forms
+- **SQLite** — base de données locale (`System.Data.SQLite`)
+- **Visual Studio** — environnement de développement
 
 ---
 
@@ -57,13 +54,18 @@ Application de bureau **C# / Windows Forms** inspirée de l'univers Stargate, pe
 
 > ⚠️ Le fichier `Stargate.db` et le dossier `Resources/` doivent être présents à la racine du projet pour que l'application fonctionne correctement.
 
+
 ---
 
-## 🛠️ Stack technique
+## ✨ Fonctionnalités
 
-- **C#** — Windows Forms
-- **SQLite** — base de données locale (`System.Data.SQLite`)
-- **Visual Studio** — environnement de développement
+- 🛸 **Tableau de bord** — vue d'ensemble des missions (passées, en cours, à venir)
+- 👽 **Découverte des races** — exploration des espèces extraterrestres avec filtres par nom et couleur (alliés en vert, ennemis en violet)
+- 🌍 **Infos planètes** — fiche détaillée de chaque planète (gravité, température, présence DataBaz, espèces habitant la planète)
+- 🔐 **Authentification** — accès à la création de missions réservé aux administrateurs
+- 📋 **Gestion des missions** — création, composition d'équipe, suivi du budget et journal de bord
+- 📊 **Statistiques** — coéquipiers par membre et suivi budgétaire des missions
+
 
 ---
 
